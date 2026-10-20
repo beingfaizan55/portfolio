@@ -1,0 +1,219 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Faizan Shahid — Python Full Stack Developer and AI/ML enthusiast.">
+    <title>Faizan Shahid | Python Developer</title>
+
+    <!-- Fixed static file syntax with proper single quotes -->
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <script src="{% static 'js/main.js' %}" defer></script>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <header class="navbar">
+        <a href="#home" class="logo">Faizan<span>.</span></a>
+
+        <button class="menu-toggle" id="menu-toggle"
+                aria-label="Toggle navigation" aria-expanded="false">
+            ☰
+        </button>
+
+        <nav id="nav-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact" class="nav-cta">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero section hidden-anim" id="home">
+            <p class="eyebrow">PYTHON FULL STACK DEVELOPER</p>
+
+            <h1>Building useful things with <br>
+                <!-- Typing Effect Container -->
+                <span class="typewriter-text"></span><span class="cursor">&nbsp;</span>
+            </h1>
+
+            <p class="hero-description">
+                I'm Faizan Shahid, a Python Full Stack Intern at Webbuggs.
+                I build web applications and explore artificial intelligence
+                and machine learning.
+            </p>
+
+            <div class="hero-actions">
+                <a href="#projects" class="button primary">
+                    Explore My Work
+                </a>
+                <a href="#contact" class="button secondary">
+                    Let's Connect
+                </a>
+            </div>
+
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/faizan-shahid-cs/"
+                   target="_blank" rel="noopener noreferrer">
+                    LinkedIn ↗
+                </a>
+                <a href="https://github.com/beingfaizan55"
+                   target="_blank" rel="noopener noreferrer">
+                    GitHub ↗
+                </a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="section hidden-anim" id="about">
+            <p class="eyebrow">01 / ABOUT ME</p>
+            <h2>Learning by building.</h2>
+
+            <p class="section-description">
+                I'm a developer focused on Python, backend development,
+                databases, and AI/ML. My goal is to build practical
+                applications and become a strong software engineer.
+            </p>
+
+            <div class="info-card">
+                <h3>Current Experience</h3>
+                <p><strong>Python Full Stack Intern</strong> — Webbuggs</p>
+                <p>
+                    Developing my skills in Python, Django, SQL,
+                    and full-stack application development.
+                </p>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="section" id="skills">
+            <div class="hidden-anim">
+                <p class="eyebrow">02 / SKILLS</p>
+                <h2>My tech stack.</h2>
+            </div>
+
+            <div class="skill-grid">
+                <div class="skill-card hidden-anim delay-1">Python</div>
+                <div class="skill-card hidden-anim delay-2">Django</div>
+                <div class="skill-card hidden-anim delay-3">HTML5</div>
+                <div class="skill-card hidden-anim delay-4">CSS3</div>
+                <div class="skill-card hidden-anim delay-1">JavaScript</div>
+                <div class="skill-card hidden-anim delay-2">SQL</div>
+                <div class="skill-card hidden-anim delay-3">Git & GitHub</div>
+                <div class="skill-card hidden-anim delay-4">AI / Machine Learning</div>
+            </div>
+
+            <p class="note hidden-anim">
+                Only list technologies you have actually studied or used.
+            </p>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="section" id="projects">
+            <div class="hidden-anim">
+                <!-- Verified no typos in this eyebrow tag -->
+                <p class="eyebrow">03 / PROJECTS</p>
+                <h2>Things I'm building.</h2>
+            </div>
+
+            <div class="project-grid">
+                <article class="project-card hidden-anim delay-1">
+                    <p class="project-number">PROJECT 01</p>
+                    <h3>Django Portfolio</h3>
+                    <p>
+                        A personal portfolio with a Django backend
+                        and a database-connected contact form.
+                    </p>
+                    <span class="tag">Python · Django · SQLite</span>
+                </article>
+
+                <article class="project-card hidden-anim delay-2">
+                    <p class="project-number">PROJECT 02</p>
+                    <h3>Python Applications</h3>
+                    <p>
+                        Python projects that demonstrate programming
+                        fundamentals and problem-solving skills.
+                    </p>
+                    <span class="tag">Python</span>
+                </article>
+
+                <article class="project-card hidden-anim delay-3">
+                    <p class="project-number">PROJECT 03</p>
+                    <h3>AI / ML Experiments</h3>
+                    <p>
+                        A space to showcase machine-learning projects
+                        as you develop and complete them.
+                    </p>
+                    <span class="tag">Python · AI / ML</span>
+                </article>
+            </div>
+
+            <p class="note hidden-anim">
+                Replace these sample project descriptions with your
+                real projects and GitHub repository links.
+            </p>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="section contact-section hidden-anim" id="contact">
+            <p class="eyebrow">04 / CONTACT</p>
+            <h2>Let's work on something useful.</h2>
+
+            <p class="section-description">
+                Have a project idea or an opportunity to discuss?
+                Send me a message.
+            </p>
+
+            {% if success %}
+                <p class="success-message">
+                    Your message was saved successfully!
+                </p>
+            {% endif %}
+
+            <form method="post" action="{% url 'home' %}#contact"
+                  class="contact-form">
+                {% csrf_token %}
+
+                {% for field in form %}
+                    <div class="form-group">
+                        <label for="{{ field.id_for_label }}">
+                            {{ field.label }}
+                        </label>
+
+                        {{ field }}
+
+                        {% for error in field.errors %}
+                            <p class="error-message">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+
+                {% if form.non_field_errors %}
+                    <div class="error-message">
+                        {{ form.non_field_errors }}
+                    </div>
+                {% endif %}
+
+                <button type="submit" class="button primary">
+                    Send Message →
+                </button>
+            </form>
+
+            <a class="email-link"
+               href="https://www.linkedin.com/in/faizan-shahid-cs/"
+               target="_blank" rel="noopener noreferrer">
+                Connect with me on LinkedIn ↗
+            </a>
+        </section>
+    </main>
+
+    <footer>
+        <p>© {% now "Y" %} Faizan Shahid. Built with Python & Django.</p>
+    </footer>
+
+</body>
+</html>
